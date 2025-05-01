@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 from decouple import config
+import dj_database_url
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,8 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-uess@6v7v8v#l*4r#h@3(b&zhk7&%g#4hjt_iwwtd@3t^m$(pm'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = []
 
@@ -104,6 +105,9 @@ DATABASES = {
     }
 }
 
+database_url = config('DATABASE_URL')
+DATABASES['default'] = dj_database_url.parse(database_url)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -149,11 +153,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'account.CustomUser'
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5175",  # or your frontend origin
+    "http://localhost:5175",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:5175",  # must match scheme + domain
+    "http://localhost:5175",
 ]
 
 ACCESS_TOKEN_LIFETIME = timedelta(minutes=5)
@@ -163,3 +167,5 @@ CHAPA_SECRET_KEY = config('CHAPA_SECRET_KEY')
 
 BASE_URL = 'http://localhost:8000'
 FRONTEND_URL = 'http://localhost:5175'
+
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost').split(',')
