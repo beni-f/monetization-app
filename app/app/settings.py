@@ -157,11 +157,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'account.CustomUser'
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5175",
+    "http://localhost:5173",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:5175",
+    "http://localhost:5173",
 ]
 
 ACCESS_TOKEN_LIFETIME = timedelta(minutes=5)
@@ -169,7 +169,7 @@ REFRESH_TOKEN_LIFETIME = timedelta(days=1)
 
 CHAPA_SECRET_KEY = config('CHAPA_SECRET_KEY')
 
-BASE_URL = 'http://localhost:8000'
-FRONTEND_URL = 'http://localhost:5175'
+BASE_URL = 'watch-and-earn-jkfe.onrender.com'
+FRONTEND_URL = 'http://localhost:5173'
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost').split(',')
