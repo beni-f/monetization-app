@@ -3,20 +3,16 @@ import {
   Box, 
   Container, 
   Typography, 
-  ImageList, 
-  ImageListItem, 
   useMediaQuery, 
   Modal, 
   Paper, 
   Tooltip,
   IconButton,
-  Divider,
-  Button
+  Divider
 } from "@mui/material";
 import { ThemeProvider } from "styled-components";
 import theme from "../theme";
 import InfoIcon from '@mui/icons-material/Info';
-import InstagramIcon from '@mui/icons-material/Instagram';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
@@ -39,9 +35,8 @@ export default function Videos() {
   const [instagramAuthPopup, setInstagramAuthPopup] = useState(null);
   const [showInstagramAuth, setShowInstagramAuth] = useState(false);
   const isMobile = useMediaQuery('(max-width:600px)');
-  const isTablet = useMediaQuery('(max-width:900px)');
 
-  const categories = ["Youtube", "Tiktok", "Instagram", "Facebook", ];
+  const categories = ["Youtube", "Tiktok", "Instagram", "Facebook"];
 
   const handleOpenModal = (video) => {
     setCurrentVideo(video);
@@ -60,17 +55,16 @@ export default function Videos() {
     const height = 700;
     const left = (window.innerWidth - width) / 2;
     const top = (window.innerHeight - height) / 2;
-    
+
     const popup = window.open(
       `https://www.instagram.com/reel/${videoId}/?variant=compact`,
       'InstagramAuth',
       `width=${width},height=${height},top=${top},left=${left}`
     );
-    
+
     if (popup) {
       setInstagramAuthPopup(popup);
-      
-      // Check for popup closure
+
       const checkPopup = setInterval(() => {
         if (popup.closed) {
           clearInterval(checkPopup);
@@ -78,7 +72,6 @@ export default function Videos() {
         }
       }, 500);
     } else {
-      // If popup blocked, show direct auth view
       setShowInstagramAuth(true);
     }
   };
@@ -92,15 +85,17 @@ export default function Videos() {
   }, [instagramAuthPopup]);
 
   useEffect(() => {
-    axiosInstance.get(`/api/media/?category=${activeCategory}`, {headers: {
-      Authorization: `Bearer ${localStorage.getItem('access')}`
-    }})
-      .then((res => {
-        console.log(res.data)
-        setVideos(res.data)
-      }))
+    axiosInstance.get(`/api/media/?category=${activeCategory}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('access')}`
+      }
+    })
+      .then((res) => {
+        console.log(res.data);
+        setVideos(res.data);
+      })
       .catch((err) => console.error(err));
-  }, [activeCategory])
+  }, [activeCategory]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -196,12 +191,35 @@ export default function Videos() {
             </Typography>
           ))}
         </Box>
-        
-        <VideoGalleryGrid
-          videos={videos}
-          handleOpenModal={handleOpenModal}
-        />
-        
+
+        {/* Video Content */}
+        {videos.length === 0 ? (
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              minHeight: '40vh',
+              color: 'gray',
+              textAlign: 'center',
+              mt: 4
+            }}
+          >
+            <Typography variant="h6" sx={{ mb: 1 }}>
+              😕 No videos available now
+            </Typography>
+            <Typography variant="body1">
+              Looks like this category is on a break. Check back later for more content!
+            </Typography>
+          </Box>
+        ) : (
+          <VideoGalleryGrid
+            videos={videos}
+            handleOpenModal={handleOpenModal}
+          />
+        )}
+
         <VideoModal 
           openModal={openModal}
           handleCloseModal={handleCloseModal}
