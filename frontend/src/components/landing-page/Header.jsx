@@ -23,7 +23,7 @@ const Header = () => {
     }`}>
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <a href="#" className="text-[#FFD700] font-cinzel text-2xl font-bold">Luxe</a>
+          <a href="#" className="text-[#FFD700] font-cinzel text-2xl font-bold">EarnVue</a>
           <nav className="hidden md:flex space-x-8">
             {navItems.map((item) => (
               <a 

@@ -23,7 +23,7 @@ const ContactSection = () => {
               <MapPin className="w-6 h-6 text-[#FFD700] mt-1" />
               <div>
                 <h3 className="text-[#FFD700] font-semibold mb-2">Our Location</h3>
-                <p className="text-[#FFD700]/70">123 Luxury Avenue, Golden Street, CA 90210</p>
+                <p className="text-[#FFD700]/70">Addis Ababa, Ethiopia</p>
               </div>
             </div>
             
@@ -31,17 +31,10 @@ const ContactSection = () => {
               <Mail className="w-6 h-6 text-[#FFD700] mt-1" />
               <div>
                 <h3 className="text-[#FFD700] font-semibold mb-2">Email Us</h3>
-                <p className="text-[#FFD700]/70">contact@luxeexample.com</p>
+                <p className="text-[#FFD700]/70">benifissha@gmail.com</p>
               </div>
             </div>
             
-            <div className="flex items-start space-x-4">
-              <Phone className="w-6 h-6 text-[#FFD700] mt-1" />
-              <div>
-                <h3 className="text-[#FFD700] font-semibold mb-2">Call Us</h3>
-                <p className="text-[#FFD700]/70">+1 (555) 123-4567</p>
-              </div>
-            </div>
           </div>
 
           <form className="space-y-6">

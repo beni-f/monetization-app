@@ -4,9 +4,9 @@ const Footer = () => {
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between">
             <div className="mb-8 md:mb-0">
-              <a href="#" className="text-[#FFD700] font-cinzel text-2xl font-bold">Luxe</a>
+              <a href="#" className="text-[#FFD700] font-cinzel text-2xl font-bold">EarnVue</a>
               <p className="text-[#FFD70099] mt-4 max-w-md font-montserrat">
-                Elevating digital experiences through premium design and flawless functionality.
+                Earn money by watching videos. Join us today and start earning!
               </p>
             </div>
   
@@ -34,10 +34,8 @@ const Footer = () => {
               <div className="col-span-2 md:col-span-1">
                 <h3 className="text-[#FFD700] font-cinzel font-semibold mb-4">Contact</h3>
                 <ul className="space-y-2 text-[#FFD700B3] font-montserrat">
-                  <li>hello@luxe-example.com</li>
-                  <li>+1 (555) 123-4567</li>
-                  <li>123 Elegant Street</li>
-                  <li>Luxury Avenue, CA 90210</li>
+                  <li>benifissha@gmail.com</li>
+                  <li>Addis Ababa, Ethiopia</li>
                 </ul>
               </div>
             </div>
