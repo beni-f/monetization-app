@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-uess@6v7v8v#l*4r#h@3(b&zhk7&%g#4hjt_iwwtd@3t^m$(pm'
 
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+DEBUG = 'True'
 
 ALLOWED_HOSTS = []
 
@@ -63,8 +63,8 @@ MIDDLEWARE = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
@@ -105,9 +105,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
-database_url = config('DATABASE_URL')
-DATABASES['default'] = dj_database_url.parse(database_url)
 
 
 # Password validation
@@ -156,11 +153,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'account.CustomUser'
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "https://watch-and-earn-umber.vercel.app",
+]
 CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
+    "https://watch-and-earn-umber.vercel.app/home",
 ]
 
 ACCESS_TOKEN_LIFETIME = timedelta(minutes=5)
